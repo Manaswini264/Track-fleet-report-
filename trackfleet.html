@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackFleet - Logistics Fleet & Route Monitoring</title>
+    <link rel="stylesheet" href="trackfleet.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">📦 TrackFleet</a>
+            <ul class="nav-links">
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#tracking">Tracking</a></li>
+                <li><a href="#analytics">Analytics</a></li>
+                <li><a href="#support">Support</a></li>
+            </ul>
+            <input 
+                type="text" 
+                id="searchInput" 
+                class="search-bar" 
+                placeholder="Search vehicles, drivers, locations..."
+            >
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>🚚 Fleet Management Dashboard</h1>
+            <p>Real-time delivery tracking and route optimization for your logistics operations</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="switchTab('overview')">📊 Overview</button>
+                <button class="btn-secondary" onclick="switchTab('fleet')">🚗 Fleet</button>
+                <button class="btn-secondary" onclick="switchTab('routes')">🗺️ Routes</button>
+            </div>
+        </div>
+
+        <!-- OVERVIEW SECTION -->
+        <section id="overviewSection">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🚗</div>
+                    <div class="stat-title">Total Vehicles</div>
+                    <div class="stat-value" id="statTotalVehicles">0</div>
+                    <div class="stat-subtitle">In fleet</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">✓</div>
+                    <div class="stat-title">Active Vehicles</div>
+                    <div class="stat-value" id="statActiveVehicles">0</div>
+                    <div class="stat-subtitle">Currently operational</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-title">Total Deliveries</div>
+                    <div class="stat-value" id="statTotalDeliveries">0</div>
+                    <div class="stat-subtitle">Today</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📏</div>
+                    <div class="stat-title">Total Distance</div>
+                    <div class="stat-value" id="statTotalDistance">0</div>
+                    <div class="stat-subtitle">km traveled</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FLEET SECTION -->
+        <section id="fleetSection" class="hidden">
+            <h2 style="color: #1e40af; margin-bottom: 20px; font-size: 1.5rem;">🚗 Fleet Status</h2>
+            
+            <div class="filters">
+                <div class="filter-grid">
+                    <div class="filter-group">
+                        <label for="statusFilter">Filter by Status</label>
+                        <select id="statusFilter">
+                            <option value="all">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="in-transit">In Transit</option>
+                            <option value="maintenance">Maintenance</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="locationFilter">Filter by Location</label>
+                        <select id="locationFilter">
+                            <option value="all">All Locations</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>&nbsp;</label>
+                        <button class="btn-secondary" onclick="location.reload()">Reset Filters</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section">
+                <h2>Fleet Vehicles</h2>
+                <div style="overflow-x: auto;">
+                    <table class="fleet-table">
+                        <thead>
+                            <tr>
+                                <th>Vehicle ID</th>
+                                <th>Driver</th>
+                                <th>Vehicle Type</th>
+                                <th>Location</th>
+                                <th>Status</th>
+                                <th>Deliveries</th>
+                                <th>Progress</th>
+                                <th>ETA</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fleetTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROUTES SECTION -->
+        <section id="routesSection" class="hidden">
+            <h2 style="color: #1e40af; margin-bottom: 30px; font-size: 1.5rem;">🗺️ Active Routes</h2>
+            <div class="routes-grid" id="routesList"></div>
+        </section>
+    </div>
+
+    <!-- Vehicle Detail Modal -->
+    <div class="modal" id="vehicleModal">
+        <div class="modal-content">
+            <!-- Modal content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification hidden" id="notification"></div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 TrackFleet. Real-time Fleet Management & Route Optimization</p>
+    </footer>
+
+    <!-- External Scripts -->
+    <script src="trackfleet.js"></script>
+</body>
+</html>
